@@ -4,8 +4,8 @@ let infos = document.querySelector('.d-1-4');
 let images = document.querySelector('.d-1-right');
 let warning = document.querySelector('.d-2');
 let numeros = document.querySelector('.d-1-3');
-let tecla_sound = new Audio('sounds/tecla_sound.mp3');
-let vote_sound = new Audio('sounds/vote_sound.mp3')
+let tecla_sound = new Audio('assets/sounds/tecla_sound.mp3');
+let vote_sound = new Audio('assets/sounds/vote_sound.mp3')
 
 
 let etapaAtual = 0; //0 para vereador, 1 para prefeito
@@ -14,6 +14,9 @@ let votoBranco = false;
 let votos = [];
 let teclado = document.querySelectorAll('.teclado--botao').forEach( item=>{
     item.addEventListener('click', clicou);
+});
+let reload = document.querySelector('.reload').addEventListener('click', ()=>{
+    document.location.reload(true);
 });
 
 
@@ -85,11 +88,11 @@ function atualizaInterface(){
         for(let i in candidato.fotos){
             if(candidato.fotos[i].small === true){
                 images.innerHTML += `<div class="d-1-image small">
-                <img src="images/${candidato.fotos[i].url}" alt=""/>
+                <img src="assets/images/${candidato.fotos[i].url}" alt=""/>
                 ${candidato.fotos[i].legenda}
             </div>`;
             }else {
-                images.innerHTML += `<div class="d-1-image"><img src="images/${candidato.fotos[i].url}" alt=""/>${candidato.fotos[i].legenda}</div>`;
+                images.innerHTML += `<div class="d-1-image"><img src="assets/images/${candidato.fotos[i].url}" alt=""/>${candidato.fotos[i].legenda}</div>`;
             } 
         }
     } else {
@@ -107,10 +110,7 @@ function corrige(){
 }
 
 function btnBranco(e){
-    /*document.querySelector('.btn-branco').addEventListener('click', (e)=>{
-        let br = e.target.getAttribute('data-btn');
-        console.log(br === 'BRANCO'); */
-        if(numero === '' || numero){ //gambiarra
+        if(numero === '' || numero){ 
             votoBranco = true;
             numero = '';
             seuVotoPara.style.display = 'block';
